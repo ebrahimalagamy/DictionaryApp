@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity() {
                     this@MainActivity,
                     LinearLayoutManager.VERTICAL, false,
                 )
+                itemAnimator = null
+
             }
         }
 

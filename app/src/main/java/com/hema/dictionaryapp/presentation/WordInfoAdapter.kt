@@ -12,7 +12,7 @@ class WordInfoAdapter : RecyclerView.Adapter<WordInfoAdapter.WordInfoViewHolder>
     var listOfCoins = emptyList<WordInfo>()
         set(value) {
             field = value
-//            notifyDataSetChanged()
+//           notifyDataSetChanged()
             notifyItemRangeChanged(0, value.size)
         }
 
