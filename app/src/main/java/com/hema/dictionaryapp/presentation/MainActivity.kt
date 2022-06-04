@@ -5,6 +5,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hema.dictionaryapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,14 +22,24 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        vm.state.observe(this@MainActivity) {
-            wordInfoAdapter.listOfCoins = it.wordInfoItem
-        }
-
+        // this observe on viewModel when the data change
+//        vm.state.observe(this@MainActivity) {
+//
+//            wordInfoAdapter.listOfCoins = it.wordInfoItem
+//        }
+//
         binding.etSearch.doOnTextChanged { text, start, before, count ->
             vm.onSearch(text.toString())
+
         }
+
+        // launch not lifecycleawer ,launchWhenStarted lifrcycleawer
+        lifecycleScope.launchWhenStarted {
+            vm.stateFlow.collect {
+                wordInfoAdapter.listOfCoins = it.wordInfoItem
+            }
+        }
+
 
         bindRecyclerView()
     }

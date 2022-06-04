@@ -8,7 +8,6 @@ import com.hema.dictionaryapp.domain.model.WordInfo
 
 class WordInfoAdapter : RecyclerView.Adapter<WordInfoAdapter.WordInfoViewHolder>() {
 
-
     var listOfCoins = emptyList<WordInfo>()
         set(value) {
             field = value
@@ -23,9 +22,7 @@ class WordInfoAdapter : RecyclerView.Adapter<WordInfoAdapter.WordInfoViewHolder>
                 wordInfo.apply {
                     tvWordName.text = word
                     tvWordPhonetic.text = phonetic
-                    tvWordMeaning.text = meanings.forEach {
-                        it.partOfSpeech
-                    }.toString()
+                    tvWordMeaning.text = meanings.toString()
                 }
             }
         }
